@@ -77,8 +77,8 @@ public class NIOServer {
                 byteBuffer.flip();
                 String content = new String(byteBuffer.array(), 0, len);
                 byteBuffer.clear();
-                key.attach(content);
                 socketChannel.register(selector, SelectionKey.OP_WRITE);
+                key.attach(content);
                 System.out.println("收到客户端数据：" + content);
             }
         } else if (key.isWritable()) {

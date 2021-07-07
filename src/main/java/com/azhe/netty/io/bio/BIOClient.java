@@ -23,8 +23,6 @@ public class BIOClient {
         System.out.println("bioclinet要发送数据：" + name);
         outputStream.write(name.getBytes());
         outputStream.close();
-
-        InputStream inputStream = socket.getInputStream();
         socket.close();
     }
 

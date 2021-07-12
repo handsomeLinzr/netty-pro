@@ -2,8 +2,7 @@ package com.azhe.netty.rpc.consumer;
 
 import com.azhe.netty.rpc.api.RpcCalculateService;
 import com.azhe.netty.rpc.api.RpcHelloService;
-import com.azhe.netty.rpc.provider.RpcCalculateServiceImpl;
-import com.azhe.netty.rpc.provider.RpcHelloServiceImpl;
+import com.azhe.netty.rpc.registry.RpcProxy;
 
 /**
  * Description:
@@ -16,14 +15,14 @@ import com.azhe.netty.rpc.provider.RpcHelloServiceImpl;
 public class RpcConsumer {
 
     public static void main(String[] args) {
-        RpcHelloService helloService = new RpcHelloServiceImpl();
-        System.out.println(helloService.hello("呵呵哒"));
+        RpcHelloService helloService = RpcProxy.getProxy(RpcHelloService.class, 8080);
+        System.out.println(helloService.hello("阿哲"));
 
-        RpcCalculateService calculateService = new RpcCalculateServiceImpl();
+        RpcCalculateService calculateService = RpcProxy.getProxy(RpcCalculateService.class, 8080);
         System.out.println(calculateService.add(1,2));
         System.out.println(calculateService.sub(3,4));
         System.out.println(calculateService.mul(5,6));
-        System.out.println(calculateService.div(20,2));
+        System.out.println(calculateService.div(20,10));
     }
 
 }

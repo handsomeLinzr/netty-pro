@@ -4,9 +4,11 @@ public class LeetcodeTest {
 
     public static void main(String[] args) {
         LeetcodeTest leetcodeTest = new LeetcodeTest();
-        int[] arr = {1,3,6,4,2,1,0,2};
-        leetcodeTest.insertSort(arr);
-        leetcodeTest.sout(arr);
+//        int[] arr = {1,3,6,4,2,1,0,2};
+//        leetcodeTest.insertSort(arr);
+//        leetcodeTest.sout(arr);
+        int i = leetcodeTest.binSearch(new int[]{1, 2, 4, 5, 7, 8, 9, 12, 15, 20}, 20);
+        System.out.println(i);
     }
 
     // 选择排序
@@ -40,8 +42,25 @@ public class LeetcodeTest {
         }
     }
     // 二分查找
-    public void binSearch() {
+    public int binSearch(int[] arr, int num) {
+        // 判断不为空
+        if (arr.length == 0) return -1;
 
+        // 首位置和最后一个位置
+        int left = 0, right = arr.length - 1;
+        int mid;
+        // 左右相邻时结束，彻底解决空循环问题
+        while (left < right-1) {
+            // 不需要加1
+            mid = left + ((right - left ) >>>1);
+            // 最后很有可能在左边
+            if (arr[mid] <= num) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        return arr[left] == num? left:arr[right] == num?right:-1;
     }
 
     private void swap(int[] arr, int i, int j) {
@@ -58,7 +77,5 @@ public class LeetcodeTest {
         }
         System.out.println();
     }
-
-
 
 }

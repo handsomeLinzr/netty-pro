@@ -69,7 +69,6 @@ public class AZTomcat {
     }
 
     public class AZHandler extends ChannelHandlerAdapter {
-        @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
             // 处理请求
             if (msg instanceof HttpRequest) {

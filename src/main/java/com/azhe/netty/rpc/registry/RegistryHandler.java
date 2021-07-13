@@ -63,7 +63,6 @@ public class RegistryHandler extends ChannelHandlerAdapter {
      * @param msg
      * @throws Exception
      */
-    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         // 获得自定义协议
         InvokerProtocol invokerProtocol = (InvokerProtocol) msg;

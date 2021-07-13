@@ -21,7 +21,6 @@ public class RpcProxyHandler extends ChannelHandlerAdapter {
      * @param msg
      * @throws Exception
      */
-    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         this.response = msg;
     }

@@ -3,6 +3,7 @@ package com.azhe.netty.rpc.registry;
 import com.azhe.netty.rpc.protocol.InvokerProtocol;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RegistryHandler extends ChannelHandlerAdapter {
+public class RegistryHandler extends ChannelInboundHandlerAdapter {
 
     private List<String> classList = new ArrayList<>(10);
     private Map<String, Object> serverMap = new ConcurrentHashMap<>(16);
@@ -63,6 +64,7 @@ public class RegistryHandler extends ChannelHandlerAdapter {
      * @param msg
      * @throws Exception
      */
+    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         // 获得自定义协议
         InvokerProtocol invokerProtocol = (InvokerProtocol) msg;

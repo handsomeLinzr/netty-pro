@@ -46,7 +46,8 @@ public class RpcRegistry {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            // 数据包最大大小   信息偏移量   信息载体字节数   调整大小   跳过的信息大小
+                            // 解码：inboud
+                            // 编码：outboud
                             pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
                             pipeline.addLast(new LengthFieldPrepender(4));
                             // 对象类型编码器

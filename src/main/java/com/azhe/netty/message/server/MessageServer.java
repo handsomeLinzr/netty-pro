@@ -1,5 +1,6 @@
 package com.azhe.netty.message.server;
 
+import com.azhe.netty.message.protocol.IMDecoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -29,6 +30,8 @@ public class MessageServer {
                         protected void initChannel(SocketChannel channel) throws Exception {
                             // 添加处理器
                             ChannelPipeline pipeline = channel.pipeline();
+                            // 自定义解码器
+                            pipeline.addLast(new IMDecoder());
                         }
                     });
             ChannelFuture future = serverBootstrap.bind(port);
